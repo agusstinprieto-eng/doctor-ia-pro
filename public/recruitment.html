@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA.AGUS | HR Recruitment Specs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+
+        .font-cyber {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .neon-text {
+            text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #auth-overlay {
+            position: fixed;
+            inset: 0;
+            background: #020617;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col">
+
+    <!-- Auth Overlay -->
+    <div id="auth-overlay">
+        <div class="max-w-md w-full p-8 glass-panel rounded-2xl border border-indigo-500/30 text-center">
+            <div class="mb-6 flex justify-center">
+                <div
+                    class="w-16 h-16 rounded-lg bg-indigo-900/20 border border-indigo-400 flex items-center justify-center">
+                    <svg class="w-8 h-8 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                        </path>
+                    </svg>
+                </div>
+            </div>
+            <h2 class="text-2xl font-cyber text-indigo-400 mb-2">PORTAL RECLUTAMIENTO</h2>
+            <p class="text-slate-400 text-sm mb-6">Acceso a Perfiles y Métricas</p>
+            <form onsubmit="checkAuth(event)" class="space-y-4">
+                <input type="password" id="password" placeholder="Ingrese Clave de Acceso"
+                    class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-indigo-500 outline-none text-center tracking-widest">
+                <button type="submit"
+                    class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-lg transition-all tracking-wider font-cyber">ENTRAR</button>
+            </form>
+            <p id="error-msg" class="text-red-400 text-xs mt-4 hidden">Credenciales Inválidas</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="flex-1 hidden">
+        <header class="border-b border-indigo-900/30 bg-slate-900/50 backdrop-blur-md sticky top-0 z-40">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <h1
+                    class="font-cyber text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-violet-500 neon-text">
+                    IA.AGUS TALENT
+                </h1>
+                <span class="text-xs font-mono text-indigo-500 border border-indigo-500/30 px-2 py-1 rounded">V1.0
+                    BETA</span>
+            </div>
+        </header>
+
+        <main class="container mx-auto px-4 py-12">
+            <div class="max-w-4xl mx-auto space-y-12">
+
+                <!-- Hero -->
+                <section class="text-center space-y-4">
+                    <h2 class="text-4xl md:text-5xl font-cyber font-bold text-white mb-4">INTELIGENCIA DE TALENTO</h2>
+                    <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+                        Evaluación predictiva de candidatos basada en análisis de competencias, autenticidad y potencial
+                        de desarrollo.
+                    </p>
+                </section>
+
+                <!-- Technical Specs -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="glass-panel p-6 rounded-xl">
+                        <h3 class="text-xl font-bold text-indigo-400 mb-4 font-cyber flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                                </path>
+                            </svg>
+                            Métricas de Selección
+                        </h3>
+                        <ul class="space-y-3 text-slate-300 text-sm">
+                            <li class="flex justify-between border-b border-slate-700/50 pb-2">
+                                <span>Fit Cultural (IA)</span>
+                                <span class="font-mono text-indigo-300">Análisis Semántico</span>
+                            </li>
+                            <li class="flex justify-between border-b border-slate-700/50 pb-2">
+                                <span>Validación Técnica</span>
+                                <span class="font-mono text-indigo-300">Skills Matrix 2.0</span>
+                            </li>
+                            <li class="flex justify-between border-b border-slate-700/50 pb-2">
+                                <span>Soft Skills</span>
+                                <span class="font-mono text-indigo-300">EQ & Adaptabilidad</span>
+                            </li>
+                            <li class="flex justify-between pt-1">
+                                <span>Score Predictivo</span>
+                                <span class="font-mono text-indigo-300">0-100 (Retención)</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-xl">
+                        <h3 class="text-xl font-bold text-violet-400 mb-4 font-cyber flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01">
+                                </path>
+                            </svg>
+                            Gestión de Expedientes
+                        </h3>
+                        <ul class="space-y-3 text-slate-300 text-sm">
+                            <li class="flex justify-between border-b border-slate-700/50 pb-2">
+                                <span>Historial Médico</span>
+                                <span class="font-mono text-violet-300">Integración Occupational</span>
+                            </li>
+                            <li class="flex justify-between border-b border-slate-700/50 pb-2">
+                                <span>Verificación</span>
+                                <span class="font-mono text-violet-300">Background Check Auto</span>
+                            </li>
+                            <li class="flex justify-between border-b border-slate-700/50 pb-2">
+                                <span>Status</span>
+                                <span class="font-mono text-violet-300">Pipeline Tracking</span>
+                            </li>
+                            <li class="flex justify-between pt-1">
+                                <span>Onboarding</span>
+                                <span class="font-mono text-violet-300">Digital Contracts</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Footer Disclaimer -->
+                <div class="border-t border-slate-800 pt-8 text-center">
+                    <p class="text-xs text-slate-500 font-mono mb-2">
+                        HUMAN RESOURCES INTELLIGENCE SYSTEM
+                    </p>
+                    <a href="https://www.ia-agus.com" target="_blank"
+                        class="text-indigo-500 hover:text-indigo-300 text-sm font-cyber tracking-widest transition-colors">
+                        POWERED BY IA.AGUS
+                    </a>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function checkAuth(e) {
+            e.preventDefault();
+            const pass = document.getElementById('password').value;
+            if (pass === 'admin' || pass === 'ia.agus') {
+                document.getElementById('auth-overlay').classList.add('hidden');
+                document.getElementById('main-content').classList.remove('hidden');
+                localStorage.setItem('ia_agus_auth', 'true');
+            } else {
+                const err = document.getElementById('error-msg');
+                err.classList.remove('hidden');
+                setTimeout(() => err.classList.add('hidden'), 2000);
+            }
+        }
+
+        if (localStorage.getItem('ia_agus_auth') === 'true') {
+            document.getElementById('auth-overlay').classList.add('hidden');
+            document.getElementById('main-content').classList.remove('hidden');
+        }
+    </script>
+</body>
+
+</html>

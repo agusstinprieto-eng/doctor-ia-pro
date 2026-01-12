@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA.AGUS | Vision System Specs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+
+        .font-cyber {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .neon-text {
+            text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #auth-overlay {
+            position: fixed;
+            inset: 0;
+            background: #020617;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col">
+
+    <!-- Auth Overlay -->
+    <div id="auth-overlay">
+        <div class="max-w-md w-full p-8 glass-panel rounded-2xl border border-cyan-500/30 text-center">
+            <div class="mb-6 flex justify-center">
+                <div
+                    class="w-16 h-16 rounded-lg bg-cyan-900/20 border border-cyan-400 flex items-center justify-center">
+                    <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                        </path>
+                    </svg>
+                </div>
+            </div>
+            <h2 class="text-2xl font-cyber text-cyan-400 mb-2">ACCESO RESTRINGIDO</h2>
+            <p class="text-slate-400 text-sm mb-6">Documentación Técnica Clasificada</p>
+            <form onsubmit="checkAuth(event)" class="space-y-4">
+                <input type="password" id="password" placeholder="Ingrese Clave de Acceso"
+                    class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-cyan-500 outline-none text-center tracking-widest">
+                <button type="submit"
+                    class="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3 rounded-lg transition-all tracking-wider font-cyber">DESBLOQUEAR</button>
+            </form>
+            <p id="error-msg" class="text-red-400 text-xs mt-4 hidden">Clave Incorrecta</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="flex-1 hidden">
+        <header class="border-b border-cyan-900/30 bg-slate-900/50 backdrop-blur-md sticky top-0 z-40">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <h1
+                    class="font-cyber text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 neon-text">
+                    IA.AGUS VISION
+                </h1>
+                <span class="text-xs font-mono text-cyan-500 border border-cyan-500/30 px-2 py-1 rounded">v2.4.0
+                    STABLE</span>
+            </div>
+        </header>
+
+        <main class="container mx-auto px-4 py-12">
+            <div class="max-w-4xl mx-auto space-y-12">
+
+                <!-- Hero -->
+                <section class="text-center space-y-4">
+                    <h2 class="text-4xl md:text-5xl font-cyber font-bold text-white mb-4">ESPEJO NEUROSOMÁTICO</h2>
+                    <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+                        Sistema avanzado de fenotipado digital no invasivo para análisis de biomarcadores de salud y
+                        estados emocionales en tiempo real.
+                    </p>
+                </section>
+
+                <!-- Technical Specs -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="glass-panel p-6 rounded-xl">
+                        <h3 class="text-xl font-bold text-cyan-400 mb-4 font-cyber flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                </path>
+                            </svg>
+                            Core AI Engine
+                        </h3>
+                        <ul class="space-y-3 text-slate-300 text-sm">
+                            <li class="flex justify-between border-b border-slate-700/50 pb-2">
+                                <span>Model</span>
+                                <span class="font-mono text-cyan-300">Gemini 1.5 Flash Vision</span>
+                            </li>
+                            <li class="flex justify-between border-b border-slate-700/50 pb-2">
+                                <span>Latency</span>
+                                <span class="font-mono text-cyan-300">~250ms (Edge)</span>
+                            </li>
+                            <li class="flex justify-between border-b border-slate-700/50 pb-2">
+                                <span>rPPG Accuracy</span>
+                                <span class="font-mono text-cyan-300">94.3% Clinical Correlation</span>
+                            </li>
+                            <li class="flex justify-between pt-1">
+                                <span>FACS Detection</span>
+                                <span class="font-mono text-cyan-300">42 Action Units</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-xl">
+                        <h3 class="text-xl font-bold text-indigo-400 mb-4 font-cyber flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                </path>
+                            </svg>
+                            Resultados & Reportes
+                        </h3>
+                        <ul class="space-y-3 text-slate-300 text-sm">
+                            <li class="flex justify-between border-b border-slate-700/50 pb-2">
+                                <span>VFC (HRV)</span>
+                                <span class="font-mono text-indigo-300">Dominio Tiempo (RMSSD)</span>
+                            </li>
+                            <li class="flex justify-between border-b border-slate-700/50 pb-2">
+                                <span>Dermatología</span>
+                                <span class="font-mono text-indigo-300">Detección de Patologías</span>
+                            </li>
+                            <li class="flex justify-between border-b border-slate-700/50 pb-2">
+                                <span>Exportar</span>
+                                <span class="font-mono text-indigo-300">PDF Encriptado (AES-256)</span>
+                            </li>
+                            <li class="flex justify-between pt-1">
+                                <span>Privacidad</span>
+                                <span class="font-mono text-indigo-300">Procesamiento Local/Efímero</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Footer Disclaimer -->
+                <div class="border-t border-slate-800 pt-8 text-center">
+                    <p class="text-xs text-slate-500 font-mono mb-2">
+                        CONFIDENTIAL DOCUMENTATION - FOR INTERNAL USE ONLY
+                    </p>
+                    <a href="https://www.ia-agus.com" target="_blank"
+                        class="text-cyan-500 hover:text-cyan-300 text-sm font-cyber tracking-widest transition-colors">
+                        POWERED BY IA.AGUS
+                    </a>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function checkAuth(e) {
+            e.preventDefault();
+            const pass = document.getElementById('password').value;
+            if (pass === 'admin' || pass === 'ia.agus') {
+                document.getElementById('auth-overlay').classList.add('hidden');
+                document.getElementById('main-content').classList.remove('hidden');
+                localStorage.setItem('ia_agus_auth', 'true');
+            } else {
+                const err = document.getElementById('error-msg');
+                err.classList.remove('hidden');
+                setTimeout(() => err.classList.add('hidden'), 2000);
+            }
+        }
+
+        // Auto-login if previously auth
+        if (localStorage.getItem('ia_agus_auth') === 'true') {
+            document.getElementById('auth-overlay').classList.add('hidden');
+            document.getElementById('main-content').classList.remove('hidden');
+        }
+    </script>
+</body>
+
+</html>

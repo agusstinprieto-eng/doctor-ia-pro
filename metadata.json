@@ -1,0 +1,7 @@
+{
+  "name": "Doctor IA - Cyberpunk Health",
+  "description": "An integrative medical AI assistant with a cyberpunk aesthetic, focusing on natural and conventional medicine analysis.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

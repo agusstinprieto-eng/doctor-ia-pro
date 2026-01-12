@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA.AGUS | Occupational Safety Specs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+
+        .font-cyber {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .neon-text {
+            text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #auth-overlay {
+            position: fixed;
+            inset: 0;
+            background: #020617;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col">
+
+    <!-- Auth Overlay -->
+    <div id="auth-overlay">
+        <div class="max-w-md w-full p-8 glass-panel rounded-2xl border border-emerald-500/30 text-center">
+            <div class="mb-6 flex justify-center">
+                <div
+                    class="w-16 h-16 rounded-lg bg-emerald-900/20 border border-emerald-400 flex items-center justify-center">
+                    <svg class="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                        </path>
+                    </svg>
+                </div>
+            </div>
+            <h2 class="text-2xl font-cyber text-emerald-400 mb-2">ACCESO DE SEGURIDAD</h2>
+            <p class="text-slate-400 text-sm mb-6">Protocolos de Salud Ocupacional</p>
+            <form onsubmit="checkAuth(event)" class="space-y-4">
+                <input type="password" id="password" placeholder="Ingrese Clave de Acceso"
+                    class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-emerald-500 outline-none text-center tracking-widest">
+                <button type="submit"
+                    class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-lg transition-all tracking-wider font-cyber">AUTORIZAR</button>
+            </form>
+            <p id="error-msg" class="text-red-400 text-xs mt-4 hidden">Acceso Denegado</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="flex-1 hidden">
+        <header class="border-b border-emerald-900/30 bg-slate-900/50 backdrop-blur-md sticky top-0 z-40">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <h1
+                    class="font-cyber text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500 neon-text">
+                    IA.AGUS SECURITY
+                </h1>
+                <span class="text-xs font-mono text-emerald-500 border border-emerald-500/30 px-2 py-1 rounded">ISO
+                    45001</span>
+            </div>
+        </header>
+
+        <main class="container mx-auto px-4 py-12">
+            <div class="max-w-4xl mx-auto space-y-12">
+
+                <!-- Hero -->
+                <section class="text-center space-y-4">
+                    <h2 class="text-4xl md:text-5xl font-cyber font-bold text-white mb-4">CONTROL DE RIESGOS</h2>
+                    <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+                        Suite integral de gestión de toxicología laboral y cumplimiento normativo para entornos de alto
+                        riesgo.
+                    </p>
+                </section>
+
+                <!-- Technical Specs -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="glass-panel p-6 rounded-xl">
+                        <h3 class="text-xl font-bold text-emerald-400 mb-4 font-cyber flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z">
+                                </path>
+                            </svg>
+                            Toxicología & Antidoping
+                        </h3>
+                        <ul class="space-y-3 text-slate-300 text-sm">
+                            <li class="flex justify-between border-b border-slate-700/50 pb-2">
+                                <span>Paneles Soportados</span>
+                                <span class="font-mono text-emerald-300">5-Panel, 10-Panel, Alcohol</span>
+                            </li>
+                            <li class="flex justify-between border-b border-slate-700/50 pb-2">
+                                <span>Sustancias</span>
+                                <span class="font-mono text-emerald-300">THC, COC, MET, OPI, AMP, PCP</span>
+                            </li>
+                            <li class="flex justify-between border-b border-slate-700/50 pb-2">
+                                <span>Validación</span>
+                                <span class="font-mono text-emerald-300">Cruzada (Cadena de Custodia)</span>
+                            </li>
+                            <li class="flex justify-between pt-1">
+                                <span>Metadata</span>
+                                <span class="font-mono text-emerald-300">Fecha, Lote, ID Empleado</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-xl">
+                        <h3 class="text-xl font-bold text-teal-400 mb-4 font-cyber flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                </path>
+                            </svg>
+                            Compliance
+                        </h3>
+                        <ul class="space-y-3 text-slate-300 text-sm">
+                            <li class="flex justify-between border-b border-slate-700/50 pb-2">
+                                <span>Cifrado de Datos</span>
+                                <span class="font-mono text-teal-300">AES-256 (At Rest)</span>
+                            </li>
+                            <li class="flex justify-between border-b border-slate-700/50 pb-2">
+                                <span>Normatividad</span>
+                                <span class="font-mono text-teal-300">NOM-030-STPS-2009</span>
+                            </li>
+                            <li class="flex justify-between border-b border-slate-700/50 pb-2">
+                                <span>Dashboard</span>
+                                <span class="font-mono text-teal-300">Métricas KPIs Tiempo Real</span>
+                            </li>
+                            <li class="flex justify-between pt-1">
+                                <span>Auditoría</span>
+                                <span class="font-mono text-teal-300">Log de Cambios Inmutable</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Footer Disclaimer -->
+                <div class="border-t border-slate-800 pt-8 text-center">
+                    <p class="text-xs text-slate-500 font-mono mb-2">
+                        INDUSTRIAL SAFETY PROTOCOLS - AUTHORIZED PERSONNEL ONLY
+                    </p>
+                    <a href="https://www.ia-agus.com" target="_blank"
+                        class="text-emerald-500 hover:text-emerald-300 text-sm font-cyber tracking-widest transition-colors">
+                        POWERED BY IA.AGUS
+                    </a>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function checkAuth(e) {
+            e.preventDefault();
+            const pass = document.getElementById('password').value;
+            if (pass === 'admin' || pass === 'ia.agus') {
+                document.getElementById('auth-overlay').classList.add('hidden');
+                document.getElementById('main-content').classList.remove('hidden');
+                localStorage.setItem('ia_agus_auth', 'true');
+            } else {
+                const err = document.getElementById('error-msg');
+                err.classList.remove('hidden');
+                setTimeout(() => err.classList.add('hidden'), 2000);
+            }
+        }
+
+        if (localStorage.getItem('ia_agus_auth') === 'true') {
+            document.getElementById('auth-overlay').classList.add('hidden');
+            document.getElementById('main-content').classList.remove('hidden');
+        }
+    </script>
+</body>
+
+</html>
