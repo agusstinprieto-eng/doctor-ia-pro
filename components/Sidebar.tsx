@@ -19,6 +19,9 @@ const Sidebar: React.FC<SidebarProps> = ({ activeView, onNavigate, isOpen, onTog
         { id: 'natural', label: 'Tienda Naturista', icon: 'fa-leaf' },
         { id: 'antidoping', label: 'Salud Ocupacional', icon: 'fa-flask' },
         { id: 'neuroscan', label: 'NeuroScan', icon: 'fa-head-side-mask' },
+        { id: 'dental', label: 'Odontología', icon: 'fa-tooth' },
+        { id: 'ophthalmology', label: 'Oftalmología', icon: 'fa-eye' },
+        { id: 'library', label: 'Biblioteca Médica', icon: 'fa-book-medical' },
     ];
 
     return (
@@ -30,7 +33,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeView, onNavigate, isOpen, onTog
             ></div>
 
             {/* Sidebar Container */}
-            <div className={`fixed left-0 top-0 bottom-0 w-64 bg-slate-950 border-r border-cyan-500/20 z-50 transition-transform duration-300 transform md:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+            <div className={`fixed left-0 top-0 bottom-0 w-64 bg-slate-950 border-r border-cyan-500/20 z-50 transition-transform duration-300 transform md:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'} flex flex-col`}>
 
                 {/* Logo Area */}
                 <div className="p-6 border-b border-cyan-500/20 flex items-center gap-3">
@@ -45,7 +48,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeView, onNavigate, isOpen, onTog
                 </div>
 
                 {/* Navigation */}
-                <div className="p-4 space-y-2">
+                <div className="p-4 space-y-2 flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-900 scrollbar-track-transparent">
                     <div className="text-[10px] text-slate-500 font-mono uppercase tracking-widest pl-3 mb-2">Plataforma</div>
 
                     {menuItems.map(item => (
@@ -70,7 +73,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeView, onNavigate, isOpen, onTog
                 </div>
 
                 {/* System Status Footer */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-slate-900 bg-slate-950">
+                <div className="p-4 border-t border-slate-900 bg-slate-950 shrink-0">
                     <div className="flex items-center justify-center gap-2 text-[10px] text-slate-500 font-mono">
                         <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
                         SYSTEM ONLINE

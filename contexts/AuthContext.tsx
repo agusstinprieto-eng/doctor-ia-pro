@@ -1,66 +1,63 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { supabase } from '../lib/supabase';
+import { User } from '@supabase/supabase-js';
 
 interface AuthContextType {
     isAuthenticated: boolean;
-    username: string | null;
-    login: (username: string, password: string) => boolean;
-    logout: () => void;
+    user: User | null;
+    login: (email: string, pass: string) => Promise<{ error: any }>;
+    signUp: (email: string, pass: string) => Promise<{ error: any }>;
+    logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Demo credentials (hardcoded for commercial deployment)
-const DEMO_USERS: Record<string, string> = {
-    'invitado': 'demo123',
-    // Legacy support alias if needed
-    'demo': 'demo123'
-};
-
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [username, setUsername] = useState<string | null>(null);
+    const [user, setUser] = useState<User | null>(null);
+    const [loading, setLoading] = useState(true);
 
-    // Check if user was previously authenticated
     useEffect(() => {
-        const savedAuth = localStorage.getItem('doctor-ia-auth');
-        if (savedAuth) {
-            try {
-                const { username: savedUsername, timestamp } = JSON.parse(savedAuth);
-                // Session expires after 24 hours
-                if (Date.now() - timestamp < 24 * 60 * 60 * 1000) {
-                    setIsAuthenticated(true);
-                    setUsername(savedUsername);
-                } else {
-                    localStorage.removeItem('doctor-ia-auth');
-                }
-            } catch (e) {
-                localStorage.removeItem('doctor-ia-auth');
-            }
-        }
+        // Check active session
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            setUser(session?.user ?? null);
+            setIsAuthenticated(!!session);
+            setLoading(false);
+        });
+
+        // Listen for changes
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            setUser(session?.user ?? null);
+            setIsAuthenticated(!!session);
+            setLoading(false);
+        });
+
+        return () => subscription.unsubscribe();
     }, []);
 
-    const login = (username: string, password: string): boolean => {
-        if (DEMO_USERS[username] === password) {
-            setIsAuthenticated(true);
-            setUsername(username);
-            localStorage.setItem('doctor-ia-auth', JSON.stringify({
-                username,
-                timestamp: Date.now()
-            }));
-            return true;
-        }
-        return false;
+    const login = async (email: string, pass: string) => {
+        const { error } = await supabase.auth.signInWithPassword({
+            email,
+            password: pass
+        });
+        return { error };
     };
 
-    const logout = () => {
-        setIsAuthenticated(false);
-        setUsername(null);
-        localStorage.removeItem('doctor-ia-auth');
+    const signUp = async (email: string, pass: string) => {
+        const { error } = await supabase.auth.signUp({
+            email,
+            password: pass
+        });
+        return { error };
+    };
+
+    const logout = async () => {
+        await supabase.auth.signOut();
     };
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, username, login, logout }}>
-            {children}
+        <AuthContext.Provider value={{ isAuthenticated, user, login, signUp, logout }}>
+            {!loading && children}
         </AuthContext.Provider>
     );
 };

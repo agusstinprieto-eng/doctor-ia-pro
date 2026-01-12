@@ -2,26 +2,47 @@ import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
 
+import React, { useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
+import { useLanguage } from '../contexts/LanguageContext';
+
 const LoginView: React.FC = () => {
-    const [username, setUsername] = useState('');
+    const [isRegistering, setIsRegistering] = useState(false);
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [successMsg, setSuccessMsg] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const { login } = useAuth();
+    const { login, signUp } = useAuth();
     const { t } = useLanguage();
+
+    // Auto-detect "Register Mode" from URL (Redirected from Stripe)
+    React.useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('register') === 'true') {
+            setIsRegistering(true);
+        }
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError('');
+        setSuccessMsg('');
         setIsLoading(true);
 
-        // Simulate network delay for better UX
-        await new Promise(resolve => setTimeout(resolve, 800));
-
-        const success = login(username, password);
-
-        if (!success) {
-            setError(t.invalidCredentials);
+        try {
+            if (isRegistering) {
+                const { error } = await signUp(email, password);
+                if (error) throw error;
+                setSuccessMsg('Cuenta creada exitosamente. Por favor inicia sesión.');
+                setIsRegistering(false);
+            } else {
+                const { error } = await login(email, password);
+                if (error) throw error;
+            }
+        } catch (err: any) {
+            setError(err.message || 'Error de autenticación');
+        } finally {
             setIsLoading(false);
         }
     };
@@ -47,31 +68,25 @@ const LoginView: React.FC = () => {
                         <i className="fas fa-user-md text-3xl text-cyan-400 neon-glow-cyan"></i>
                     </div>
                     <h1 className="text-4xl font-cyber font-bold text-white mb-2 neon-glow-cyan uppercase tracking-tighter">
-                        {t.loginTitle}
+                        {isRegistering ? 'Crear Cuenta' : t.loginTitle}
                     </h1>
                     <p className="text-cyan-400 text-[10px] font-mono tracking-[0.3em] uppercase opacity-80">
-                        {t.loginSubtitle}
+                        {isRegistering ? 'NUEVO USUARIO' : t.loginSubtitle}
                     </p>
-                    <div className="mt-3 flex items-center justify-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_cyan] animate-pulse"></span>
-                        <span className="text-[10px] font-mono text-cyan-500 uppercase tracking-widest">
-                            {t.poweredBy}
-                        </span>
-                    </div>
                 </div>
 
-                {/* Login Form */}
+                {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-5">
                     <div>
                         <label className="block text-cyan-400 text-sm font-mono mb-2 uppercase tracking-wider">
-                            <i className="fas fa-user mr-2"></i>{t.username}
+                            <i className="fas fa-envelope mr-2"></i>Email
                         </label>
                         <input
-                            type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             className="w-full bg-slate-950/50 border border-cyan-500/30 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 transition-all font-medium"
-                            placeholder={t.enterUsername}
+                            placeholder="doctor@ejemplo.com"
                             required
                         />
                     </div>
@@ -85,8 +100,9 @@ const LoginView: React.FC = () => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             className="w-full bg-slate-950/50 border border-cyan-500/30 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 transition-all font-medium"
-                            placeholder={t.enterPassword}
+                            placeholder="••••••••"
                             required
+                            minLength={6}
                         />
                     </div>
 
@@ -94,6 +110,13 @@ const LoginView: React.FC = () => {
                         <div className="bg-red-950/50 border border-red-500/50 rounded-lg px-4 py-3 text-red-400 text-sm flex items-center gap-2 animate-in slide-in-from-top-2 fade-in">
                             <i className="fas fa-exclamation-triangle"></i>
                             <span>{error}</span>
+                        </div>
+                    )}
+
+                    {successMsg && (
+                        <div className="bg-emerald-950/50 border border-emerald-500/50 rounded-lg px-4 py-3 text-emerald-400 text-sm flex items-center gap-2 animate-in slide-in-from-top-2 fade-in">
+                            <i className="fas fa-check-circle"></i>
+                            <span>{successMsg}</span>
                         </div>
                     )}
 
@@ -109,28 +132,25 @@ const LoginView: React.FC = () => {
                             </span>
                         ) : (
                             <span className="flex items-center justify-center gap-2">
-                                <i className="fas fa-sign-in-alt"></i>
-                                {t.accessSystem}
+                                <i className={`fas ${isRegistering ? 'fa-user-plus' : 'fa-sign-in-alt'}`}></i>
+                                {isRegistering ? 'Registrarse' : t.accessSystem}
                             </span>
                         )}
                     </button>
                 </form>
 
-                {/* Demo Credentials Info */}
-                <div className="mt-6 p-4 bg-cyan-950/20 border border-cyan-500/20 rounded-lg">
-                    <p className="text-cyan-400 text-xs font-mono mb-2 uppercase tracking-wider">
-                        <i className="fas fa-info-circle mr-2"></i>{t.demoCredentials}
-                    </p>
-                    <div className="grid grid-cols-2 gap-2 font-mono text-[11px]">
-                        <div className="text-slate-400">{t.username}:</div>
-                        <div className="text-cyan-300">negocio</div>
-                        <div className="text-slate-400">{t.password}:</div>
-                        <div className="text-cyan-300">demo</div>
-                    </div>
+                {/* Toggle Register/Login */}
+                <div className="mt-6 text-center">
+                    <button
+                        onClick={() => { setIsRegistering(!isRegistering); setError(''); setSuccessMsg(''); }}
+                        className="text-cyan-400 hover:text-cyan-300 text-xs font-mono tracking-wider underline decoration-cyan-500/30 hover:decoration-cyan-400 underline-offset-4 transition-all"
+                    >
+                        {isRegistering ? '¿Ya tienes cuenta? Inicia Sesión' : '¿No tienes cuenta? Regístrate aquí'}
+                    </button>
                 </div>
 
                 {/* Footer */}
-                <div className="mt-6 text-center flex flex-col items-center gap-1">
+                <div className="mt-8 text-center flex flex-col items-center gap-1">
                     <p className="text-slate-500 text-[10px] font-mono uppercase tracking-widest">
                         {t.secureSystem}
                     </p>
@@ -144,3 +164,4 @@ const LoginView: React.FC = () => {
 };
 
 export default LoginView;
+

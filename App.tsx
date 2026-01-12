@@ -13,6 +13,9 @@ import AntidopingDashboard from './components/AntidopingDashboard';
 import CalendarDashboard from './components/CalendarDashboard';
 import PrescriptionGenerator from './components/PrescriptionGenerator';
 import NeurosomaticScanner from './components/NeurosomaticScanner';
+import { DentalModule } from './components/DentalModule';
+import { OphthalmologyModule } from './components/OphthalmologyModule';
+import { MedicalLibrary } from './components/MedicalLibrary';
 import { Message } from './types';
 import { geminiService } from './services/geminiService';
 import { pdfService } from './services/pdfService';
@@ -21,7 +24,8 @@ import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 
 const AppContent: React.FC = () => {
-  const { isAuthenticated, username } = useAuth();
+  const { isAuthenticated, user } = useAuth();
+  const username = user?.email?.split('@')[0] || 'Doctor';
   const { language, t } = useLanguage();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
@@ -294,6 +298,18 @@ const AppContent: React.FC = () => {
               setActiveView('chat');
             }}
           />
+        )}
+
+        {activeView === 'dental' && (
+          <DentalModule />
+        )}
+
+        {activeView === 'ophthalmology' && (
+          <OphthalmologyModule />
+        )}
+
+        {activeView === 'library' && (
+          <MedicalLibrary />
         )}
 
 
