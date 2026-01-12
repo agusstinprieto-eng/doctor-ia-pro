@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOCTOR IA PRO - Planes & Precios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;900&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --brand-cyan: #22d3ee;
+            --brand-dark: #020617;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--brand-dark);
+            color: #e2e8f0;
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .text-glow {
+            text-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
+        }
+    </style>
+</head>
+
+<body class="selection:bg-cyan-500/30">
+
+    <nav
+        class="fixed top-0 w-full z-50 bg-[#020617]/80 backdrop-blur-lg border-b border-cyan-500/10 px-8 py-4 flex justify-between items-center">
+        <a href="index.html" class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-cyan-500/10 border border-cyan-500 rounded-lg flex items-center justify-center">
+                <span class="text-cyan-400 font-black text-sm">DR</span>
+            </div>
+            <span class="font-black text-white uppercase tracking-tighter text-sm">DOCTOR <span class="text-cyan-400">IA
+                    PRO</span></span>
+        </a>
+        <a href="marketing.html"
+            class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Volver</a>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 pt-32 pb-24">
+        <header class="text-center mb-24">
+            <h1 class="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter mb-6">
+                MODELO DE <span class="text-cyan-400 text-glow">INVERSIÓN</span>
+            </h1>
+            <p class="text-lg text-slate-400 max-w-2xl mx-auto font-light">
+                Infraestructura SaaS escalable para consultorios privados, clínicas especializadas y redes
+                hospitalarias.
+            </p>
+        </header>
+
+        <!-- Pricing Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+
+            <!-- Basic Plan -->
+            <div
+                class="bg-slate-900/40 p-10 rounded-[2.5rem] border border-white/5 flex flex-col hover:border-white/10 transition-colors">
+                <h3 class="text-sm font-black text-slate-500 uppercase tracking-widest mb-4">Consultorio</h3>
+                <div class="flex items-baseline gap-1 mb-8">
+                    <span class="text-4xl font-black text-white">$49</span>
+                    <span class="text-sm text-slate-500 font-bold">/mes</span>
+                </div>
+                <ul class="space-y-4 mb-10 flex-1">
+                    <li class="flex items-center gap-3 text-sm text-slate-300">
+                        <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        1 Doctor / Usuario
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-slate-300">
+                        <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        Generador de Recetas PDF
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-slate-300">
+                        <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        Historia Clínica Básica
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-slate-300">
+                        <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        Agenda de Citas
+                    </li>
+                </ul>
+                <button
+                    class="w-full py-4 rounded-xl bg-white/5 hover:bg-white/10 text-white font-black text-xs uppercase tracking-widest transition-colors">Comenzar</button>
+            </div>
+
+            <!-- Pro Plan -->
+            <div
+                class="bg-slate-900/80 p-10 rounded-[2.5rem] border border-cyan-500/50 flex flex-col relative shadow-[0_0_50px_rgba(34,211,238,0.1)]">
+                <div
+                    class="absolute -top-4 left-1/2 -translate-x-1/2 bg-cyan-500 text-[#020617] text-[10px] font-black uppercase tracking-widest px-4 py-1 rounded-full">
+                    Más Popular</div>
+                <h3 class="text-sm font-black text-cyan-400 uppercase tracking-widest mb-4">Clínica Pro</h3>
+                <div class="flex items-baseline gap-1 mb-8">
+                    <span class="text-5xl font-black text-white">$149</span>
+                    <span class="text-sm text-slate-500 font-bold">/mes</span>
+                </div>
+                <ul class="space-y-4 mb-10 flex-1">
+                    <li class="flex items-center gap-3 text-sm text-white">
+                        <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        Hasta 5 Doctores
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-white">
+                        <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        <span class="font-bold text-cyan-200">NeuroScan IA (Ilimitado)</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-white">
+                        <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        Dashboard Salud Ocupacional
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-white">
+                        <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        Análisis Dermatológico
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-white">
+                        <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        Soporte Prioritario
+                    </li>
+                </ul>
+                <button
+                    class="w-full py-4 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-[#020617] font-black text-xs uppercase tracking-widest transition-colors shadow-lg shadow-cyan-500/20">Activar
+                    Licencia</button>
+            </div>
+
+            <!-- Enterprise Plan -->
+            <div
+                class="bg-slate-900/40 p-10 rounded-[2.5rem] border border-white/5 flex flex-col hover:border-white/10 transition-colors">
+                <h3 class="text-sm font-black text-slate-500 uppercase tracking-widest mb-4">Enterprise</h3>
+                <div class="flex items-baseline gap-1 mb-8">
+                    <span class="text-4xl font-black text-white">Custom</span>
+                </div>
+                <ul class="space-y-4 mb-10 flex-1">
+                    <li class="flex items-center gap-3 text-sm text-slate-300">
+                        <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        Usuarios Ilimitados
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-slate-300">
+                        <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        Implementación On-Premise
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-slate-300">
+                        <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        API Access (Integración ERP)
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-slate-300">
+                        <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        Marca Blanca (White Label)
+                    </li>
+                </ul>
+                <button
+                    class="w-full py-4 rounded-xl bg-white/5 hover:bg-white/10 text-white font-black text-xs uppercase tracking-widest transition-colors">Contactar
+                    Ventas</button>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <section class="max-w-4xl mx-auto">
+            <h2 class="text-xs font-black text-slate-500 uppercase tracking-[0.4em] mb-12 text-center">Preguntas
+                Frecuentes</h2>
+            <div class="space-y-6">
+                <div class="p-6 bg-slate-900/30 rounded-2xl border border-white/5">
+                    <h4 class="text-white font-bold mb-2">¿Es seguro subir datos de pacientes?</h4>
+                    <p class="text-sm text-slate-400">Absolutamente. Utilizamos encriptación AES-256 de grado militar y
+                        cumplimos con la normativa HIPAA y NOM-024-SSA3-2010 para expedientes clínicos electrónicos.</p>
+                </div>
+                <div class="p-6 bg-slate-900/30 rounded-2xl border border-white/5">
+                    <h4 class="text-white font-bold mb-2">¿Necesito equipo especial para NeuroScan?</h4>
+                    <p class="text-sm text-slate-400">No. Nuestra tecnología rPPG funciona con cualquier cámara web
+                        estándar HD (720p o superior) de laptops, tablets o smartphones.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="mt-24 pt-12 border-t border-slate-800 text-center">
+            <p class="text-[9px] text-slate-600 uppercase tracking-[0.5em] font-black italic">
+                © 2026 DOCTOR IA PRO systems
+            </p>
+        </footer>
+    </main>
+</body>
+
+</html>
