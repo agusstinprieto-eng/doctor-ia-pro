@@ -140,13 +140,21 @@ const LoginView: React.FC = () => {
                 </form>
 
                 {/* Toggle Register/Login */}
-                <div className="mt-6 text-center">
+                <div className="mt-6 text-center space-y-3">
                     <button
                         onClick={() => { setIsRegistering(!isRegistering); setError(''); setSuccessMsg(''); }}
-                        className="text-cyan-400 hover:text-cyan-300 text-xs font-mono tracking-wider underline decoration-cyan-500/30 hover:decoration-cyan-400 underline-offset-4 transition-all"
+                        className="block w-full text-cyan-400 hover:text-cyan-300 text-xs font-mono tracking-wider underline decoration-cyan-500/30 hover:decoration-cyan-400 underline-offset-4 transition-all"
                     >
                         {isRegistering ? '¿Ya tienes cuenta? Inicia Sesión' : '¿No tienes cuenta? Regístrate aquí'}
                     </button>
+
+                    <a
+                        href="/pricing.html"
+                        className="block w-full text-slate-400 hover:text-cyan-400 text-[10px] font-mono tracking-widest transition-colors"
+                    >
+                        <i className="fas fa-tag mr-2"></i>
+                        VER PLANES Y PRECIOS
+                    </a>
                 </div>
 
                 {/* Footer */}
